@@ -29,7 +29,12 @@ document.addEventListener('keyup', (event) => {
       break;
   };
 
-  if(Utils.isGameOver()) {
+  if(Utils.isWin()) {
+    document.querySelector('.game-over h1').innerHTML = 'You won!';
+    document.querySelector('.game-over').style.display = 'flex';
+  }
+  else if(Utils.isGameOver()) {
+    document.querySelector('.game-over h1').innerHTML = 'Game over!';
     document.querySelector('.game-over').style.display = 'flex';
   } else {
     setTimeout(() => createNewElement(), 200);

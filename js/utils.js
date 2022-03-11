@@ -7,6 +7,17 @@ export default class Utils {
 
   static allowCreateNewElement = false;
 
+  static isWin() {
+    for (let i = 0; i < 4; ++i) {
+      for (let j = 0; j < 4; ++j) {
+        if (document.querySelector(`#square-${i}-${j}`)?.innerHTML === '2048') {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   static isGameOver() {
     let emptyElements = this.getEmptyElements();
     if (emptyElements.length !== 0) return false;
