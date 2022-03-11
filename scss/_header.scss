@@ -1,0 +1,37 @@
+.scores {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: right;
+
+  .score-wrapper {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-color;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 1em;
+    gap: 0.25rem;
+
+    .header {
+      color: lighten($color: $primary-color, $amount: 18)
+    }
+
+    .score, .score-plus {
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .score-plus {
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      color: $text-color;
+      opacity: 0;
+      transition: all 200ms ease-in-out;
+    }
+  }
+}

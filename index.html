@@ -5,12 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/main.css">
-  <title>2028</title>
+  <link rel="icon" href="./img/favicon.ico">
+  <title>2048 Clone</title>
 </head>
 <body>
   <div class="main-wrapper">
-    <div class="header">
-      game
+    <div class="scores">
+      <div class="score-wrapper" id="actual-score">
+        <b class="header">Score</b>
+        <b class="score">0</b>
+        <b class="score-plus"></b>
+      </div>
+      <div class="score-wrapper" id="best-score">
+        <b class="header">Best</b>
+        <b class="score">0</b>
+      </div>
     </div>
     <div class="big-square">
       <div class="small-squares">
@@ -30,6 +39,13 @@
         <div class="small-square"></div>
         <div class="small-square"></div>
         <div class="small-square"></div>
+      </div>
+
+      <div class="game-over">
+        <h1>Game over!</h1>
+        <button class="try-again">
+          Try again
+        </button>
       </div>
     </div>
   </div>

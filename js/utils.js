@@ -3,20 +3,42 @@ export default class Utils {
   static smallSquareWidth = 6;
   static gap = 0.75;
 
-  static popElement() {
-    let emptyElements = [];
+  static allowCreateNewElement = false;
 
-    for(let i = 0; i < 4; ++i) {
-      for(let j = 0; j < 4; ++j) {
-        if(!this.exists(i, j)) {
-          emptyElements.push([i, j]);
+  static isGameOver() {
+    let emptyElements = this.getEmptyElements();
+    if (emptyElements.length !== 0) return false;
+
+    for (let i = 0; i < 4; ++i) {
+      for (let j = 0; j < 4; ++j) {
+        if (this.equals(i, j, i + 1, j) || this.equals(i, j, i - 1, j) ||
+          this.equals(i, j, i, j + 1) || this.equals(i, j, i, j - 1)) {
+          return false;
         }
       }
     }
+    return true;
+  }
+
+  static popElement() {
+    let emptyElements = this.getEmptyElements();
 
     let index = Math.floor(Math.random() * emptyElements.length);
     let element = emptyElements[index];
     return element;
+  }
+
+  static getEmptyElements() {
+    let emptyElements = [];
+
+    for (let i = 0; i < 4; ++i) {
+      for (let j = 0; j < 4; ++j) {
+        if (!this.exists(i, j)) {
+          emptyElements.push([i, j]);
+        }
+      }
+    }
+    return emptyElements;
   }
 
   static createNode([x, y]) {
@@ -35,7 +57,12 @@ export default class Utils {
   }
 
   static move(x, y) {
+
+    let score = 0;
+
     const moveElementAt = (i, j) => {
+      this.allowCreateNewElement = true;
+
       //delete element at (i + x, j + y)
       let oldNodeElement = document.querySelector(`#square-${i + x}-${j + y}`);
       let oldValue = parseInt(oldNodeElement?.innerHTML || 0);
@@ -49,6 +76,9 @@ export default class Utils {
 
       // update element value
       nodeElement.innerHTML = parseInt(nodeElement.innerHTML) + oldValue;
+
+      //update score
+      score += (oldValue > 0) ? parseInt(nodeElement.innerHTML) : 0;
     };
 
     const loopVars = {
@@ -82,6 +112,23 @@ export default class Utils {
         }
       }
     }
+
+    if (score > 0) {
+      const bestScore = parseInt(localStorage.getItem('bestScore'));
+      const newScore = parseInt(document.querySelector('#actual-score .score').innerHTML) + score;
+      document.querySelector(`#actual-score .score`).innerHTML = newScore;
+
+      if(bestScore < newScore) {
+        localStorage.setItem('bestScore', newScore);
+        document.querySelector('#best-score .score').innerHTML = newScore;
+      }
+      this.displayAddedScore(score);
+    }
+  }
+
+  static displayAddedScore(score) {
+    const element = document.querySelector(`#actual-score .score-plus`);
+    element.innerHTML = `+${score}`;    
   }
 
   static equals(i, j, _i, _j) {
@@ -96,7 +143,7 @@ export default class Utils {
   }
 
   static isValidGridElement(i, j, x, y) {
-    return document.querySelector(`#square-${i}-${j}`) !== null
+    return this.exists(i, j)
       && i + x >= 0 && i + x < 4
       && j + y >= 0 && j + y < 4;
   }

@@ -1,0 +1,67 @@
+.big-square {
+  position: relative;
+  width: calc(4 * #{$small-square-width} + 5 * #{$gap});
+  height: calc(4 * #{$small-square-width} + 5 * #{$gap});
+  background-color: $primary-color;
+  border-radius: 5px;
+  .small-squares {
+    display: grid;
+    grid-template-columns: $small-square-width $small-square-width $small-square-width $small-square-width; 
+    gap: $gap;
+    padding: $gap;
+
+    .small-square {
+      background-color: $secondary-color;
+    }
+  }
+
+  .small-square {
+    border-radius: 3px;
+    width: $small-square-width;
+    height: $small-square-width;
+    background-color: $bright-color;
+    font-size: 4em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  .overlay-square {
+    position: absolute;
+    transition: all 300ms ease-in-out;
+  }
+ 
+  .game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 40;
+    background-color: rgba($color: #ffffff, $alpha: 0.75);
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      letter-spacing: 1px;
+      color: $primary-color;
+    }
+
+    .try-again {
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      background-color: $primary-color;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
