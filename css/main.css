@@ -1,0 +1,68 @@
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica;
+  color: #533E85;
+  margin: 0 auto;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.big-square {
+  position: relative;
+  margin: 10px;
+  width: calc(4 * 6rem + 5 * 0.75rem);
+  height: calc(4 * 6rem + 5 * 0.75rem);
+  background-color: #488FB1;
+  border-radius: 5px;
+}
+
+.big-square .small-squares {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 6rem 6rem 6rem 6rem;
+      grid-template-columns: 6rem 6rem 6rem 6rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.big-square .small-squares .small-square {
+  background-color: #4FD3C4;
+}
+
+.big-square .small-square {
+  border-radius: 3px;
+  width: 6rem;
+  height: 6rem;
+  background-color: #C1F8CF;
+  font-size: 42pt;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.big-square .overlay-square {
+  position: absolute;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+/*# sourceMappingURL=main.css.map */
