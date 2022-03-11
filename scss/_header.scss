@@ -7,22 +7,22 @@
 
   .score-wrapper {
     position: relative;
-    padding: 10px;
+    padding: 0.75rem 1.5rem 0.25rem 1.5rem;
     display: flex;
     flex-direction: column;
     background-color: $primary-color;
     border-radius: 3px;
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: 0.75em;
     gap: 0.25rem;
 
-    .header {
+    .title {
       color: lighten($color: $primary-color, $amount: 18)
     }
 
     .score, .score-plus {
       color: white;
-      font-size: 1.5em;
+      font-size: 2em;
     }
 
     .score-plus {
@@ -30,8 +30,52 @@
       bottom: 0;
       margin: 0 auto;
       color: $text-color;
-      opacity: 0;
-      transition: all 200ms ease-in-out;
+      animation: move-up 600ms ease-in both;
     }
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+  align-items: center;
+
+  .title {
+    flex: 2;
+    text-align: left;
+    font-size: 4em;
+    font-weight: bold;
+
+    sub {
+      font-size: 0.3em;
+      font-weight: normal;
+    }
+  }
+
+  .new-game {
+    font-size: 0.90em;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    background-color: $primary-color;
+    padding: 0.5rem 1rem;
+  }
+
+}
+
+@keyframes move-up {
+  0% {
+    bottom: 0rem;
+    opacity: 1;
+  }
+  75% {
+    bottom: 3rem;
+    opacity: 0.5;
+  }
+  100% {
+    bottom: 3rem;
+    opacity: 0;
   }
 }

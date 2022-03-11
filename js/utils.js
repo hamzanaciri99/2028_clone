@@ -1,5 +1,7 @@
 export default class Utils {
 
+  static COLORS = ['#fff600', '#ffc302', '#ff8f00', '#ff5b00', '#ff0505'];
+
   static smallSquareWidth = 6;
   static gap = 0.75;
 
@@ -76,6 +78,7 @@ export default class Utils {
 
       // update element value
       nodeElement.innerHTML = parseInt(nodeElement.innerHTML) + oldValue;
+      this.changeBackgroundColor(nodeElement);
 
       //update score
       score += (oldValue > 0) ? parseInt(nodeElement.innerHTML) : 0;
@@ -126,9 +129,29 @@ export default class Utils {
     }
   }
 
+  static changeBackgroundColor(nodeElement) {
+    const value = parseInt(nodeElement.innerHTML);
+    if (value >= 1024) {
+      nodeElement.style.backgroundColor = this.COLORS[4];
+    } else if(value >= 512) {
+      nodeElement.style.backgroundColor = this.COLORS[3];
+    } else if(value >= 256) {
+      nodeElement.style.backgroundColor = this.COLORS[2];
+    } else if(value >= 64) {
+      nodeElement.style.backgroundColor = this.COLORS[1];
+    } else if(value >= 32) {
+      console.log(this.COLORS[0]);
+      nodeElement.style.backgroundColor = this.COLORS[0];
+    }
+  }
+
   static displayAddedScore(score) {
     const element = document.querySelector(`#actual-score .score-plus`);
-    element.innerHTML = `+${score}`;    
+    element.innerHTML = `+${score}`;
+    element.style.animation = 'none';
+    setTimeout(function() {
+        element.style.animation = '';
+    }, 10);
   }
 
   static equals(i, j, _i, _j) {

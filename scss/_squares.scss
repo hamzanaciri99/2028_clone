@@ -20,7 +20,7 @@
     width: $small-square-width;
     height: $small-square-width;
     background-color: $bright-color;
-    font-size: 4em;
+    font-size: 2.5em;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -30,7 +30,8 @@
 
   .overlay-square {
     position: absolute;
-    transition: all 300ms ease-in-out;
+    transition: transform 100ms ease-in;
+    animation: pop-up 100ms ease-in;
   }
  
   .game-over {
@@ -63,5 +64,15 @@
       background-color: $primary-color;
       padding: 0.5rem 1rem;
     }
+  }
+}
+
+
+@keyframes pop-up {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
