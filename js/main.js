@@ -5,6 +5,7 @@ if(localStorage.getItem('bestScore') == null) {
 } 
 document.querySelector('#best-score .score').innerHTML = parseInt(localStorage.getItem('bestScore'));
 
+
 let gridElement = document.querySelector(".big-square");
 
 initGrid();
@@ -45,6 +46,12 @@ document.querySelector('.try-again').addEventListener('click', () => {
   initGrid();
   document.querySelector('.game-over').style.display = 'none';
 });
+
+document.querySelector('.new-game').addEventListener('click', () => {
+  initGrid();
+  document.querySelector('.game-over').style.display = 'none';
+});
+
 
 function initGrid() {
   // init score
